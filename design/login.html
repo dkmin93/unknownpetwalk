@@ -50,12 +50,13 @@
 
         .mainBoard {text-align: center; width: 1000px; margin: 0 auto 100px auto;}
         .mainBoard .card {width: 500px; margin: 0 auto; text-align: center;}
-        .mainBoard .card .photo {margin: 50px; width: 300px; height: auto;}
+        .mainBoard .card .photo {margin: 50px auto; width: 300px; height: auto;}
         .img {width: 100%; height: auto;}
-        .mainBoard .card .idBox {margin: 10px; font-size: 20px;}
-        .mainBoard .card .pwBox {margin: 10px; font-size: 20px;}
+        .mainBoard .card .idBox {margin: 10px auto; font-size: 30px; width: 300px; height: 30px;}
+        .mainBoard .card .pwBox {margin: 10px auto; font-size: 30px; width: 300px; height: 30px;}
+        input {width: 90%; height: 90%; background-color: #fbebe5;}
         .mainBoard .card .loginBtn .login {background-color: #F88257; border: 2px solid #F88257;
-            border-radius: 8%; margin-top: 30px; font-size: 15px; color: aliceblue;}
+            border-radius: 8%; margin-top: 40px; font-size: 15px; color: aliceblue;}
 
     </style>
 </head>
@@ -63,8 +64,8 @@
     <header>
         <ul class = "menu">
             <li style="float: left;"><a href=""><img src="img/mainlogo.png" alt="logo" width="100px"></a></li>
-            <li><a href="">로그아웃</a></li>
-            <li><a href="">마이페이지</a></li>
+            <!--<li><a href="">로그아웃</a></li>-->
+            <!--<li><a href="">마이페이지</a></li>-->
             <li><a href="">고객지원</a></li>
         </ul>
     </header>
@@ -80,16 +81,34 @@
 
     <script>
         var loginBtn = document.querySelector(".loginBtn");
-        loginBtn.addEventListener("click", function() {
-
-        })
         var idBox = document.querySelector(".idBox");
         var pwBox = document.querySelector(".pwBox");
+
+        loginBtn.addEventListener("click", function() {
+            var regId = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+                if (idBox.value == "" || pwBox.value == "") {
+                    alert('아이디와 비밀번호를 모두 입력하세요.')
+                } else if (!regId.test(idBox.value)) {
+                    alert('아이디를 이메일 형식으로 입력해 주세요.')
+                    return;
+                } 
+
+        })
+
+
         pwBox.onkeyup = function () {
             if (window.event.keyCode == 13 && idBox.value != "" && pwBox.value != "") {
+                var regId = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+                if (!regId.test(idBox.value)) {
+                    alert('아이디를 이메일 형식으로 입력해 주세요.')
+                    return;
+                }
                 alert("?") //엔터치고 로그인 기능 
             }
         }
+
+
+
     </script>
 
     <footer>

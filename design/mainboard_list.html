@@ -54,34 +54,25 @@
         .section .leftBox{float: left; margin-left: 46px;}
         .section .rightBox{float: right; margin-right: 46px;}
         .article {width: 100%;}
-        .card {margin: 5% auto; padding: 15px; width: 90%; height: 120px; overflow: hidden; 
-            border: 1px solid #F88257; border-bottom: 2px solid #F88257; position: relative;}
+        .card {margin: 5% auto; padding: 10px; width: 90%; height: 150px; overflow: hidden; 
+            border: 1px solid #F88257; border-bottom: 2px solid #F88257; position: relative; animation: ease-in-out;}
         .card .cardLeft {height: 100%; width: 25%; display: block; float: left; }
-        .card .cardLeft .a {height: 90%; width: 90%; margin: 5% auto; display: block; background-image: url("/img/dog.jpg"); 
+        .card .cardLeft .a {height: 90%; width: 90%; margin: 5% auto; display: block; background-image: url("img/dog.jpg"); 
             background-repeat: no-repeat; background-size: cover; background-position: center;}
         .card .cardMiddle {height: 100%; width: 50%; float: left; margin: 0 auto; 
             }
         .card .cardMiddle .cardMiddleUpper {height: 50%; width: 100%; }
         .card .cardMiddle .cardMiddleUpper h4 {margin-left: 10px; padding-top: 25px; line-height: 100%; font-weight: 800;}
         .card .cardMiddle .tagBox {height: 50%; width: 100%; overflow: hidden; padding: 10px;}
-        .card .cardMiddle .tagBox .tag {display: inline-block; margin: 0 10px;}
-        .card .cardRight {display: block; height: 100%; width: 25%; float: right; margin: 0 auto;
-            overflow: hidden;}
+        .card .cardMiddle .tagBox .tag {display: inline-block; margin: 0 10px; color: #F88257;}
+        .card .cardRight {display: block; width: 25%; float: right; margin: 20px auto;
+            overflow: hidden; }
         .card .cardRight .location {float: left; width: 100%; height: 50%; text-align: center; line-height: 100%; 
-            padding: 10px auto;}
+            padding: 10px auto; margin-bottom: 22px;}
         .card .cardRight .price {float: left; width: 100%; height: 50%; text-align: center; line-height: 100%; 
-            padding: 10px auto;}
+            padding: 10px auto; margin-top: 20px;}
         .doneOrNot {position: absolute; top: 0px; left: 0px; z-index: 100; }
 
-        @keyframes cardAnm {
-            from {
-                opacity: 0;
-                margin-bottom: -100px;
-            } to {
-                opacity: 1;
-                margin-bottom: 0;
-            }
-        }
 
     </style>
 </head>
@@ -192,7 +183,7 @@
                         <div class="location">역삼동</div>
                         <div class="price">15,000원</div>
                     </div>
-                    <div class="doneOrNot">
+                    <div class="doneOrNot N">
                         구인 중
                     </div>
                 </div>
@@ -212,7 +203,7 @@
                         <div class="location">역삼동</div>
                         <div class="price">15,000원</div>
                     </div>
-                    <div class="doneOrNot">
+                    <div class="doneOrNot Y">
                         구인 완료
                     </div>
                 </div>    
@@ -237,10 +228,29 @@
     </footer>
     
     <script>
-
+        var cards = document.querySelectorAll(".card");
+        var keyframes = [
+            {opacity: 0,transform: "translate(0, 100px)" },
+            {opacity: 0.5},
+            {opacity: 1}
+        ]
+        var options = {
+            duration: 1000,
+            easing: "ease-in"
+        }
+        for(let i = 0; i<5; i++) {
+            cards[i].animate(keyframes, options);
+        }
 
         var doneOrNot = document.querySelectorAll(".doneOrNot");
-        //구인완료인 경우 grayscale() 함수써서 회색으로 보이게 하기기
+        for(let j = 0; j<5; j++) {
+            if (doneOrNot[j].classList.contains("Y")) {
+                doneOrNot[j].parentElement.style.filter = "grayscale(90%)";
+                console.log(123);
+                
+            }
+        }        
+        //구인완료인 경우 회색으로 보이게 하기
     </script>
 
 </body>
